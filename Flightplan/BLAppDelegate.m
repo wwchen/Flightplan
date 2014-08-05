@@ -7,8 +7,29 @@
 //
 
 #import "BLAppDelegate.h"
+#import "BLDrawerViewController.h"
+#import "BLCenterViewController.h"
+#import <MMDrawerController/MMDrawerController.h>
 
 @implementation BLAppDelegate
+
+- (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    UIViewController *leftDrawer = [[BLDrawerViewController alloc] init];
+    UIViewController *center = [[BLCenterViewController alloc] init];
+    UINavigationController *leftNav = [[UINavigationController alloc] initWithRootViewController:leftDrawer];
+    UINavigationController *centerNav = [[UINavigationController alloc] initWithRootViewController:center];
+    MMDrawerController *drawerController =[[MMDrawerController alloc] initWithCenterViewController:centerNav
+                                                                          leftDrawerViewController:leftNav];
+    [drawerController setShowsShadow:YES];
+    [drawerController setMaximumLeftDrawerWidth:160.0f];
+    [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
+    [drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [self.window setRootViewController:drawerController];
+    return YES;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

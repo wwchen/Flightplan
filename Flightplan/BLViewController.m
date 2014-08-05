@@ -17,13 +17,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(contentSizeDidChange:)
+                                                 name:UIContentSizeCategoryDidChangeNotification
+                                               object:nil];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)dealloc
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)contentSizeDidChange:(NSString *)size
+{
+    // implemented by subclasses
 }
 
 @end

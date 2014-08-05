@@ -10,4 +10,5 @@
 
 @interface BLViewController : UIViewController
 
+- (void)contentSizeDidChange:(NSString *)size;
 @end
