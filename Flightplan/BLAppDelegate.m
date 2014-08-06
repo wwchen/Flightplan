@@ -29,6 +29,7 @@
     [leftDrawer setDataSource:[self initializeNavigation]];
     [drawerController setShowsShadow:YES];
     [drawerController setMaximumLeftDrawerWidth:160.0f];
+    [drawerController setShouldStretchDrawer:NO];
     [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
     [drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
     
