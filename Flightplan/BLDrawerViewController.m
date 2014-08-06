@@ -9,6 +9,8 @@
 #import "BLDrawerViewController.h"
 #import <MMDrawerController/UIViewController+MMDrawerController.h>
 
+const CGFloat BLkDrawerWidth = 140.0f;
+
 @interface BLDrawerViewController ()
 
 @end

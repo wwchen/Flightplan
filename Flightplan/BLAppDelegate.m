@@ -11,8 +11,6 @@
 #import "BLCenterViewController.h"
 #import <MMDrawerController/MMDrawerController.h>
 
-const CGFloat BLkDrawerWidth = 140.0f;
-
 @interface BLAppDelegate ()
 @end
 

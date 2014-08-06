@@ -9,6 +9,8 @@
 #import "BLViewController.h"
 #import "BLNavSection.h"
 
+extern const CGFloat BLkDrawerWidth;
+
 @interface BLDrawerViewController : BLViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) NSArray *dataSource;
