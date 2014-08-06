@@ -7,6 +7,7 @@
 //
 
 #import "BLDrawerViewController.h"
+#import "BLDrawerSection.h"
 #import "BLDrawerItem.h"
 #import <MMDrawerController/UIViewController+MMDrawerController.h>
 
