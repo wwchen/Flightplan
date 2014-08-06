@@ -7,6 +7,7 @@
 //
 
 #import "BLViewController.h"
+#import "BLNavSection.h"
 
 @interface BLDrawerViewController : BLViewController <UITableViewDataSource, UITableViewDelegate>
 

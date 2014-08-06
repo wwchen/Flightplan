@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+extern const CGFloat BLkdrawerWidth;
+
 @interface BLAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

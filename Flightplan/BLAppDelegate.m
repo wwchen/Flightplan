@@ -7,28 +7,27 @@
 //
 
 #import "BLAppDelegate.h"
-#import "BLDrawerViewController.h"
+#import "BLNavDrawerViewController.h"
 #import "BLCenterViewController.h"
 #import <MMDrawerController/MMDrawerController.h>
 
+const CGFloat BLkDrawerWidth = 140.0f;
+
 @interface BLAppDelegate ()
-- (NSArray *)initializeNavigation;
 @end
 
 @implementation BLAppDelegate
 
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    BLDrawerViewController *leftDrawer = [[BLDrawerViewController alloc] init];
+    BLDrawerViewController *leftDrawer = [[BLNavDrawerViewController alloc] init];
     BLCenterViewController *center = [[BLCenterViewController alloc] init];
-    UINavigationController *leftNav = [[UINavigationController alloc] initWithRootViewController:leftDrawer];
     UINavigationController *centerNav = [[UINavigationController alloc] initWithRootViewController:center];
     MMDrawerController *drawerController =[[MMDrawerController alloc] initWithCenterViewController:centerNav
-                                                                          leftDrawerViewController:leftNav];
+                                                                          leftDrawerViewController:leftDrawer];
     
-    [leftDrawer setDataSource:[self initializeNavigation]];
     [drawerController setShowsShadow:YES];
-    [drawerController setMaximumLeftDrawerWidth:160.0f];
+    [drawerController setMaximumLeftDrawerWidth:BLkDrawerWidth];
     [drawerController setShouldStretchDrawer:NO];
     [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
     [drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
@@ -69,25 +68,6 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
-
-# pragma mark - initialization
-- (NSArray *)initializeNavigation
-{
-    NSMutableArray *sections = [[NSMutableArray alloc] init];
-    
-    NSMutableArray *section = [[NSMutableArray alloc] init];
-    [section addObject:@"Home"];
-    [section addObject:@"Foo"];
-    [section addObject:@"Bar"];
-    [sections addObject:section];
-    
-    section = [[NSMutableArray alloc] init];
-    [section addObject:@"Settings"];
-    [section addObject:@"Hello"];
-    [sections addObject:section];
-    
-    return [NSArray arrayWithArray:sections];
 }
 
 @end

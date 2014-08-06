@@ -7,6 +7,7 @@
 //
 
 #import "BLDrawerViewController.h"
+#import <MMDrawerController/UIViewController+MMDrawerController.h>
 
 @interface BLDrawerViewController ()
 
@@ -41,15 +42,26 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[self.dataSource objectAtIndex:section] count];
+    BLNavSection *navSection = [self.dataSource objectAtIndex:section];
+    return [navSection.items count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [[UITableViewCell alloc] init];
-    NSArray *section = [self.dataSource objectAtIndex:indexPath.section];
-    [cell.textLabel setText:[section objectAtIndex:indexPath.row]];
+    BLNavSection *navSection = [self.dataSource objectAtIndex:indexPath.section];
+    BLNavItem *navItem = [navSection.items objectAtIndex:indexPath.row];
+    // TODO temporarily just show the textlabel
+    [cell.textLabel setText:[navItem title]];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"selected %@", indexPath);
+    //[self.mm_drawerController closeDrawerAnimated:YES completion:nil];
+    UIViewController *nav = [[UIViewController alloc] init];
+    [self.mm_drawerController setCenterViewController:nav withCloseAnimation:YES completion:nil];
 }
 
 @end

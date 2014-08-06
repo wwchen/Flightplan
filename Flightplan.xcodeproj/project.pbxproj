@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		7152888A8E01453E88F55484 /* libPods-Flightplan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D724561307A43C49DECF80F /* libPods-Flightplan.a */; };
+		9814964B1991F8F500DF0D35 /* BLNavDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9814964A1991F8F500DF0D35 /* BLNavDrawerViewController.m */; };
+		9814964E19920C1700DF0D35 /* BLNavSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 9814964D19920C1700DF0D35 /* BLNavSection.m */; };
+		9814965119920C2200DF0D35 /* BLNavItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9814965019920C2200DF0D35 /* BLNavItem.m */; };
 		98F5118F1991563C00C2E2E2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98F5118E1991563C00C2E2E2 /* Foundation.framework */; };
 		98F511911991563C00C2E2E2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98F511901991563C00C2E2E2 /* CoreGraphics.framework */; };
 		98F511931991563C00C2E2E2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98F511921991563C00C2E2E2 /* UIKit.framework */; };
@@ -40,6 +43,12 @@
 /* Begin PBXFileReference section */
 		3D724561307A43C49DECF80F /* libPods-Flightplan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Flightplan.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		42512F7E1F2146759ED30161 /* Pods-Flightplan.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flightplan.xcconfig"; path = "Pods/Pods-Flightplan.xcconfig"; sourceTree = "<group>"; };
+		981496491991F8F500DF0D35 /* BLNavDrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLNavDrawerViewController.h; sourceTree = "<group>"; };
+		9814964A1991F8F500DF0D35 /* BLNavDrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLNavDrawerViewController.m; sourceTree = "<group>"; };
+		9814964C19920C1700DF0D35 /* BLNavSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLNavSection.h; sourceTree = "<group>"; };
+		9814964D19920C1700DF0D35 /* BLNavSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLNavSection.m; sourceTree = "<group>"; };
+		9814964F19920C2200DF0D35 /* BLNavItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLNavItem.h; sourceTree = "<group>"; };
+		9814965019920C2200DF0D35 /* BLNavItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLNavItem.m; sourceTree = "<group>"; };
 		98F5118B1991563C00C2E2E2 /* Flightplan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flightplan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98F5118E1991563C00C2E2E2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		98F511901991563C00C2E2E2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -128,6 +137,12 @@
 			children = (
 				98F5119D1991563C00C2E2E2 /* BLAppDelegate.h */,
 				98F5119E1991563C00C2E2E2 /* BLAppDelegate.m */,
+				981496491991F8F500DF0D35 /* BLNavDrawerViewController.h */,
+				9814964A1991F8F500DF0D35 /* BLNavDrawerViewController.m */,
+				9814964C19920C1700DF0D35 /* BLNavSection.h */,
+				9814964D19920C1700DF0D35 /* BLNavSection.m */,
+				9814964F19920C2200DF0D35 /* BLNavItem.h */,
+				9814965019920C2200DF0D35 /* BLNavItem.m */,
 				98F511C6199157AE00C2E2E2 /* View Controllers */,
 				98F511A01991563C00C2E2E2 /* Main_iPhone.storyboard */,
 				98F511A31991563C00C2E2E2 /* Main_iPad.storyboard */,
@@ -313,8 +328,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9814965119920C2200DF0D35 /* BLNavItem.m in Sources */,
 				98F511A81991563C00C2E2E2 /* BLViewController.m in Sources */,
+				9814964B1991F8F500DF0D35 /* BLNavDrawerViewController.m in Sources */,
 				98F511C91991588500C2E2E2 /* BLCenterViewController.m in Sources */,
+				9814964E19920C1700DF0D35 /* BLNavSection.m in Sources */,
 				98F5119F1991563C00C2E2E2 /* BLAppDelegate.m in Sources */,
 				98F5119B1991563C00C2E2E2 /* main.m in Sources */,
 				98F511CC199158CC00C2E2E2 /* BLDrawerViewController.m in Sources */,
