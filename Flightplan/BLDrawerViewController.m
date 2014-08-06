@@ -15,6 +15,8 @@ const CGFloat BLkDrawerWidth = 140.0f;
 
 @interface BLDrawerViewController ()
 
+- (BLDrawerItem *)itemAtIndexPath:(NSIndexPath *)indexPath;
+
 @end
 
 @implementation BLDrawerViewController
@@ -55,10 +57,10 @@ const CGFloat BLkDrawerWidth = 140.0f;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [[UITableViewCell alloc] init];
-    BLDrawerSection *section = [self.dataSource objectAtIndex:indexPath.section];
-    BLDrawerItem *item = [section.items objectAtIndex:indexPath.row];
+    BLDrawerItem *item = [self itemAtIndexPath:indexPath];
     // TODO temporarily just show the textlabel
-    switch ([item valueType]) {
+    switch ([item valueType])
+    {
         case BLDrawerItemTypeLabel:
             break;
         case BLDrawerItemTypeLink:
@@ -76,9 +78,33 @@ const CGFloat BLkDrawerWidth = 140.0f;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"selected %@", indexPath);
-    //[self.mm_drawerController closeDrawerAnimated:YES completion:nil];
-    UIViewController *nav = [[UIViewController alloc] init];
-    [self.mm_drawerController setCenterViewController:nav withCloseAnimation:YES completion:nil];
+    BLDrawerItem *item = [self itemAtIndexPath:indexPath];
+    if ([tableView indexPathForSelectedRow] != indexPath)
+    {
+        [self.mm_drawerController closeDrawerAnimated:YES completion:nil];
+        return;
+    }
+    
+    if (item.valueType == BLDrawerItemTypeLink)
+    {
+        UINavigationController *ctrl = (UINavigationController *) [self.mm_drawerController centerViewController];
+        [ctrl pushViewController:item.value animated:YES];
+        //[self.mm_drawerController closeDrawerAnimated:YES completion:nil];
+        [self.mm_drawerController setCenterViewController:ctrl withCloseAnimation:YES completion:nil];
+        //[self.mm_drawerController setCenterViewController:item.value withCloseAnimation:YES completion:nil];
+    }
+}
+
+# pragma mark - Accessor
+- (BLDrawerItem *)itemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.dataSource)
+    {
+        BLDrawerSection *section = [self.dataSource objectAtIndex:indexPath.section];
+        BLDrawerItem *item = [section.items objectAtIndex:indexPath.row];
+        return item;
+    }
+    return nil;
 }
 
 @end

@@ -18,15 +18,18 @@
 
 - (void)viewDidLoad
 {
+    // set the hamburger button
     MMDrawerBarButtonItem* button = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(drawerButtonPress:)];
     [self.navigationItem setLeftBarButtonItem:button animated:YES];
     
+    // double tapping on the view will peek the drawer
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
     [doubleTap setNumberOfTapsRequired:2];
     [self.view addGestureRecognizer:doubleTap];
     
-    UIColor *barColor = [UIColor brownColor];
-    [self.navigationController.navigationBar setBarTintColor:barColor];
+    // set up a nav bar
+    [self.navigationController addChildViewController:self];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor brownColor]];
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
 }

@@ -40,6 +40,8 @@
     // Override point for customization after application launch.
     return YES;
 }
+
+#pragma mark - Application Lifecycle
 							
 - (void)applicationWillResignActive:(UIApplication *)application
 {

@@ -11,6 +11,7 @@
 		9814964B1991F8F500DF0D35 /* BLNavDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9814964A1991F8F500DF0D35 /* BLNavDrawerViewController.m */; };
 		985AD72919929BC600EF47D7 /* BLDrawerSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 985AD72819929BC600EF47D7 /* BLDrawerSection.m */; };
 		985AD72C19929BD500EF47D7 /* BLDrawerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 985AD72B19929BD500EF47D7 /* BLDrawerItem.m */; };
+		985AD7301992D5D100EF47D7 /* BLAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 985AD72F1992D5D100EF47D7 /* BLAboutViewController.m */; };
 		98F5118F1991563C00C2E2E2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98F5118E1991563C00C2E2E2 /* Foundation.framework */; };
 		98F511911991563C00C2E2E2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98F511901991563C00C2E2E2 /* CoreGraphics.framework */; };
 		98F511931991563C00C2E2E2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98F511921991563C00C2E2E2 /* UIKit.framework */; };
@@ -49,6 +50,8 @@
 		985AD72819929BC600EF47D7 /* BLDrawerSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLDrawerSection.m; sourceTree = "<group>"; };
 		985AD72A19929BD500EF47D7 /* BLDrawerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLDrawerItem.h; sourceTree = "<group>"; };
 		985AD72B19929BD500EF47D7 /* BLDrawerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLDrawerItem.m; sourceTree = "<group>"; };
+		985AD72E1992D5D100EF47D7 /* BLAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLAboutViewController.h; sourceTree = "<group>"; };
+		985AD72F1992D5D100EF47D7 /* BLAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLAboutViewController.m; sourceTree = "<group>"; };
 		98F5118B1991563C00C2E2E2 /* Flightplan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flightplan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98F5118E1991563C00C2E2E2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		98F511901991563C00C2E2E2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -100,6 +103,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		985AD72D1992D5AA00EF47D7 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				981496491991F8F500DF0D35 /* BLNavDrawerViewController.h */,
+				9814964A1991F8F500DF0D35 /* BLNavDrawerViewController.m */,
+				985AD72E1992D5D100EF47D7 /* BLAboutViewController.h */,
+				985AD72F1992D5D100EF47D7 /* BLAboutViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
 		98F511821991563C00C2E2E2 = {
 			isa = PBXGroup;
 			children = (
@@ -137,9 +151,8 @@
 			children = (
 				98F5119D1991563C00C2E2E2 /* BLAppDelegate.h */,
 				98F5119E1991563C00C2E2E2 /* BLAppDelegate.m */,
-				981496491991F8F500DF0D35 /* BLNavDrawerViewController.h */,
-				9814964A1991F8F500DF0D35 /* BLNavDrawerViewController.m */,
-				98F511C6199157AE00C2E2E2 /* View Controllers */,
+				985AD72D1992D5AA00EF47D7 /* View Controllers */,
+				98F511C6199157AE00C2E2E2 /* Base View Controllers */,
 				98F511A01991563C00C2E2E2 /* Main_iPhone.storyboard */,
 				98F511A31991563C00C2E2E2 /* Main_iPad.storyboard */,
 				98F511A91991563C00C2E2E2 /* Images.xcassets */,
@@ -177,7 +190,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		98F511C6199157AE00C2E2E2 /* View Controllers */ = {
+		98F511C6199157AE00C2E2E2 /* Base View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				98F511A61991563C00C2E2E2 /* BLViewController.h */,
@@ -191,7 +204,7 @@
 				985AD72A19929BD500EF47D7 /* BLDrawerItem.h */,
 				985AD72B19929BD500EF47D7 /* BLDrawerItem.m */,
 			);
-			name = "View Controllers";
+			name = "Base View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,6 +341,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				985AD7301992D5D100EF47D7 /* BLAboutViewController.m in Sources */,
 				985AD72C19929BD500EF47D7 /* BLDrawerItem.m in Sources */,
 				98F511A81991563C00C2E2E2 /* BLViewController.m in Sources */,
 				9814964B1991F8F500DF0D35 /* BLNavDrawerViewController.m in Sources */,

@@ -9,6 +9,7 @@
 #import "BLNavDrawerViewController.h"
 #import "BLDrawerSection.h"
 #import "BLDrawerItem.h"
+#import "BLAboutViewController.h"
 
 @interface BLNavDrawerViewController ()
 
@@ -35,7 +36,8 @@
     
     
     section = [[BLDrawerSection alloc] init];
-    item = [[BLDrawerItem alloc] initWithLabel:@"About" valueType:BLDrawerItemTypeLabel value:nil];
+    BLAboutViewController *aboutView = [[BLAboutViewController alloc] init];
+    item = [[BLDrawerItem alloc] initWithLabel:@"About" valueType:BLDrawerItemTypeLink value:aboutView];
     [section.items addObject:item];
     
     item = [[BLDrawerItem alloc] initWithLabel:@"Foo" valueType:BLDrawerItemTypeLabel value:nil];
