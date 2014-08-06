@@ -22,36 +22,26 @@
     NSMutableArray *sections = [[NSMutableArray alloc] init];
     
     BLDrawerSection *section = [[BLDrawerSection alloc] init];
-    BLDrawerItem *item = [[BLDrawerItem alloc] init];
-    item.title = @"Home";
+    BLDrawerItem *item = [[BLDrawerItem alloc] initWithLabel:@"Home" valueType:BLDrawerItemTypeLabel value:nil];
     [section.items addObject:item];
     
-    item = [[BLDrawerItem alloc] init];
-    item.valueType = BLDrawerItemTypeLabel;
-    item.title = @"Settings";
+    item = [[BLDrawerItem alloc] initWithLabel:@"Settings" valueType:BLDrawerItemTypeLink value:nil];
     [section.items addObject:item];
     
-    item = [[BLDrawerItem alloc] init];
-    item.valueType = BLDrawerItemTypeLink;
-    item.title = @"Bar";
+    item = [[BLDrawerItem alloc] initWithLabel:@"Bar" valueType:BLDrawerItemTypeLabel value:nil];
     [section.items addObject:item];
     
     [sections addObject:section];
     
     
     section = [[BLDrawerSection alloc] init];
-    item = [[BLDrawerItem alloc] init];
-    item.title = @"About";
+    item = [[BLDrawerItem alloc] initWithLabel:@"About" valueType:BLDrawerItemTypeLabel value:nil];
     [section.items addObject:item];
     
-    item = [[BLDrawerItem alloc] init];
-    item.valueType = BLDrawerItemTypeLabel;
-    item.title = @"Foo";
+    item = [[BLDrawerItem alloc] initWithLabel:@"Foo" valueType:BLDrawerItemTypeLabel value:nil];
     [section.items addObject:item];
     
-    item = [[BLDrawerItem alloc] init];
-    item.valueType = BLDrawerItemTypeLabel;
-    item.title = @"Goo";
+    item = [[BLDrawerItem alloc] initWithLabel:@"Goo" valueType:BLDrawerItemTypeLabel value:nil];
     [section.items addObject:item];
     
     [sections addObject:section];

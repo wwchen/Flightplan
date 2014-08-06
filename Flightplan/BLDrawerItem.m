@@ -10,4 +10,16 @@
 
 @implementation BLDrawerItem
 
+- (id)initWithLabel:(NSString *)label valueType:(BLDrawerItemType)valueType value:(id)value
+{
+    self = [super init];
+    if (self)
+    {
+        self.label = label;
+        self.valueType = valueType;
+        self.value = value;
+    }
+    return self;
+}
+
 @end

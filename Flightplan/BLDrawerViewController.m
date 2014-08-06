@@ -60,20 +60,16 @@ const CGFloat BLkDrawerWidth = 140.0f;
     // TODO temporarily just show the textlabel
     switch ([item valueType]) {
         case BLDrawerItemTypeLabel:
-            [cell.textLabel setText:[item title]];
             break;
         case BLDrawerItemTypeLink:
-            [cell.textLabel setText:[item title]];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
         case BLDrawerItemTypeStatus:
-            [cell.textLabel setText:[item title]];
-            
             break;
         default:
             break;
     }
-    [cell.textLabel setText:[item title]];
+    [cell.textLabel setText:[item label]];
     return cell;
 }
 
