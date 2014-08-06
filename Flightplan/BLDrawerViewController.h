@@ -11,6 +11,13 @@
 
 extern const CGFloat BLkDrawerWidth;
 
+typedef NS_ENUM(NSInteger, BLDrawerItemType)
+{
+    BLDrawerItemTypeLabel,
+    BLDrawerItemTypeLink,
+    BLDrawerItemTypeStatus
+};
+
 @interface BLDrawerViewController : BLViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) NSArray *dataSource;

@@ -6,12 +6,6 @@
 //  Copyright (c) 2014 Brewliant Labs. All rights reserved.
 //
 
-typedef NS_ENUM(NSInteger, BLNavItemType)
-{
-    BLNavItemTypeLabel,
-    BLNavItemTypeLink,
-    BLNavItemTypeStatus
-};
 
 @interface BLNavItem : NSObject
 

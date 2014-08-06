@@ -31,6 +31,8 @@ const CGFloat BLkDrawerWidth = 140.0f;
     [self.tableView setDataSource:self];
 
     [self.tableView setBackgroundColor:[UIColor blueColor]];
+    [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+
     [self.view setBackgroundColor:[UIColor brownColor]];
     
     [self.view addSubview:self.tableView];
@@ -54,6 +56,21 @@ const CGFloat BLkDrawerWidth = 140.0f;
     BLNavSection *navSection = [self.dataSource objectAtIndex:indexPath.section];
     BLNavItem *navItem = [navSection.items objectAtIndex:indexPath.row];
     // TODO temporarily just show the textlabel
+    switch ([navItem valueType]) {
+        case BLDrawerItemTypeLabel:
+            [cell.textLabel setText:[navItem title]];
+            break;
+        case BLDrawerItemTypeLink:
+            [cell.textLabel setText:[navItem title]];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            break;
+        case BLDrawerItemTypeStatus:
+            [cell.textLabel setText:[navItem title]];
+            
+            break;
+        default:
+            break;
+    }
     [cell.textLabel setText:[navItem title]];
     return cell;
 }

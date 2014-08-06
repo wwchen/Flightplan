@@ -25,12 +25,12 @@
     [section.items addObject:item];
     
     item = [[BLNavItem alloc] init];
-    item.valueType = BLNavItemTypeLabel;
+    item.valueType = BLDrawerItemTypeLabel;
     item.title = @"Settings";
     [section.items addObject:item];
     
     item = [[BLNavItem alloc] init];
-    item.valueType = BLNavItemTypeLabel;
+    item.valueType = BLDrawerItemTypeLink;
     item.title = @"Bar";
     [section.items addObject:item];
     
@@ -43,16 +43,17 @@
     [section.items addObject:item];
     
     item = [[BLNavItem alloc] init];
-    item.valueType = BLNavItemTypeLabel;
+    item.valueType = BLDrawerItemTypeLabel;
     item.title = @"Foo";
     [section.items addObject:item];
     
     item = [[BLNavItem alloc] init];
-    item.valueType = BLNavItemTypeLabel;
+    item.valueType = BLDrawerItemTypeLabel;
     item.title = @"Goo";
     [section.items addObject:item];
     
     [sections addObject:section];
     self.dataSource = [NSArray arrayWithArray:sections];
 }
+
 @end
