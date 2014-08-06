@@ -11,6 +11,8 @@
 		9814964B1991F8F500DF0D35 /* BLNavDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9814964A1991F8F500DF0D35 /* BLNavDrawerViewController.m */; };
 		9814964E19920C1700DF0D35 /* BLNavSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 9814964D19920C1700DF0D35 /* BLNavSection.m */; };
 		9814965119920C2200DF0D35 /* BLNavItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9814965019920C2200DF0D35 /* BLNavItem.m */; };
+		985AD72919929BC600EF47D7 /* BLDrawerSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 985AD72819929BC600EF47D7 /* BLDrawerSection.m */; };
+		985AD72C19929BD500EF47D7 /* BLDrawerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 985AD72B19929BD500EF47D7 /* BLDrawerItem.m */; };
 		98F5118F1991563C00C2E2E2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98F5118E1991563C00C2E2E2 /* Foundation.framework */; };
 		98F511911991563C00C2E2E2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98F511901991563C00C2E2E2 /* CoreGraphics.framework */; };
 		98F511931991563C00C2E2E2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98F511921991563C00C2E2E2 /* UIKit.framework */; };
@@ -49,6 +51,10 @@
 		9814964D19920C1700DF0D35 /* BLNavSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLNavSection.m; sourceTree = "<group>"; };
 		9814964F19920C2200DF0D35 /* BLNavItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLNavItem.h; sourceTree = "<group>"; };
 		9814965019920C2200DF0D35 /* BLNavItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLNavItem.m; sourceTree = "<group>"; };
+		985AD72719929BC600EF47D7 /* BLDrawerSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLDrawerSection.h; sourceTree = "<group>"; };
+		985AD72819929BC600EF47D7 /* BLDrawerSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLDrawerSection.m; sourceTree = "<group>"; };
+		985AD72A19929BD500EF47D7 /* BLDrawerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLDrawerItem.h; sourceTree = "<group>"; };
+		985AD72B19929BD500EF47D7 /* BLDrawerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLDrawerItem.m; sourceTree = "<group>"; };
 		98F5118B1991563C00C2E2E2 /* Flightplan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flightplan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98F5118E1991563C00C2E2E2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		98F511901991563C00C2E2E2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -190,6 +196,10 @@
 				98F511C81991588500C2E2E2 /* BLCenterViewController.m */,
 				98F511CA199158CC00C2E2E2 /* BLDrawerViewController.h */,
 				98F511CB199158CC00C2E2E2 /* BLDrawerViewController.m */,
+				985AD72719929BC600EF47D7 /* BLDrawerSection.h */,
+				985AD72819929BC600EF47D7 /* BLDrawerSection.m */,
+				985AD72A19929BD500EF47D7 /* BLDrawerItem.h */,
+				985AD72B19929BD500EF47D7 /* BLDrawerItem.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -329,6 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9814965119920C2200DF0D35 /* BLNavItem.m in Sources */,
+				985AD72C19929BD500EF47D7 /* BLDrawerItem.m in Sources */,
 				98F511A81991563C00C2E2E2 /* BLViewController.m in Sources */,
 				9814964B1991F8F500DF0D35 /* BLNavDrawerViewController.m in Sources */,
 				98F511C91991588500C2E2E2 /* BLCenterViewController.m in Sources */,
@@ -336,6 +347,7 @@
 				98F5119F1991563C00C2E2E2 /* BLAppDelegate.m in Sources */,
 				98F5119B1991563C00C2E2E2 /* main.m in Sources */,
 				98F511CC199158CC00C2E2E2 /* BLDrawerViewController.m in Sources */,
+				985AD72919929BC600EF47D7 /* BLDrawerSection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

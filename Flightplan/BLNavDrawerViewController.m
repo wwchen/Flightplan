@@ -7,6 +7,7 @@
 //
 
 #import "BLNavDrawerViewController.h"
+#import "BLNavItem.h"
 
 @interface BLNavDrawerViewController ()
 

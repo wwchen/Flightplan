@@ -7,6 +7,7 @@
 //
 
 #import "BLDrawerViewController.h"
+#import "BLDrawerItem.h"
 #import <MMDrawerController/UIViewController+MMDrawerController.h>
 
 const CGFloat BLkDrawerWidth = 140.0f;
@@ -44,34 +45,34 @@ const CGFloat BLkDrawerWidth = 140.0f;
     return [self.dataSource count];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)index
 {
-    BLNavSection *navSection = [self.dataSource objectAtIndex:section];
-    return [navSection.items count];
+    BLDrawerSection *section = [self.dataSource objectAtIndex:index];
+    return [section.items count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [[UITableViewCell alloc] init];
-    BLNavSection *navSection = [self.dataSource objectAtIndex:indexPath.section];
-    BLNavItem *navItem = [navSection.items objectAtIndex:indexPath.row];
+    BLDrawerSection *section = [self.dataSource objectAtIndex:indexPath.section];
+    BLDrawerItem *item = [section.items objectAtIndex:indexPath.row];
     // TODO temporarily just show the textlabel
-    switch ([navItem valueType]) {
+    switch ([item valueType]) {
         case BLDrawerItemTypeLabel:
-            [cell.textLabel setText:[navItem title]];
+            [cell.textLabel setText:[item title]];
             break;
         case BLDrawerItemTypeLink:
-            [cell.textLabel setText:[navItem title]];
+            [cell.textLabel setText:[item title]];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
         case BLDrawerItemTypeStatus:
-            [cell.textLabel setText:[navItem title]];
+            [cell.textLabel setText:[item title]];
             
             break;
         default:
             break;
     }
-    [cell.textLabel setText:[navItem title]];
+    [cell.textLabel setText:[item title]];
     return cell;
 }
 

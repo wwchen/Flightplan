@@ -6,11 +6,8 @@
 //  Copyright (c) 2014 Brewliant Labs. All rights reserved.
 //
 
+#import "BLDrawerItem.h"
 
-@interface BLNavItem : NSObject
-
-@property (strong, nonatomic) NSString *title;
-@property (nonatomic) NSInteger valueType;
-@property (strong, nonatomic) id value;
+@interface BLNavItem : BLDrawerItem
 
 @end
