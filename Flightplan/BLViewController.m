@@ -9,7 +9,7 @@
 #import "BLViewController.h"
 
 @interface BLViewController ()
-
+- (void)contentSizeDidChangeNotification:(NSNotification *)notification;
 @end
 
 @implementation BLViewController
@@ -28,9 +28,15 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void)contentSizeDidChangeNotification:(NSNotification *)notification
+{
+    [self contentSizeDidChange:notification.userInfo[UIContentSizeCategoryNewValueKey]];
+}
+
 - (void)contentSizeDidChange:(NSString *)size
 {
     // implemented by subclasses
+    NSLog(@"content size changed to %@", size);
 }
 
 @end

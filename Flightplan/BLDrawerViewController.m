@@ -14,36 +14,42 @@
 
 @implementation BLDrawerViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)contentSizeDidChange:(NSString *)size
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    [self.tableView reloadData];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    [self.tableView setDelegate:self];
+    [self.tableView setDataSource:self];
+
+    [self.tableView setBackgroundColor:[UIColor blueColor]];
+    [self.view setBackgroundColor:[UIColor brownColor]];
+    
+    [self.view addSubview:self.tableView];
 }
 
-- (void)didReceiveMemoryWarning
+# pragma mark - Table View configuration
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    return [self.dataSource count];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    return [[self.dataSource objectAtIndex:section] count];
 }
-*/
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [[UITableViewCell alloc] init];
+    NSArray *section = [self.dataSource objectAtIndex:indexPath.section];
+    [cell.textLabel setText:[section objectAtIndex:indexPath.row]];
+    return cell;
+}
 
 @end

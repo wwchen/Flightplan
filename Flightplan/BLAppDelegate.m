@@ -11,16 +11,22 @@
 #import "BLCenterViewController.h"
 #import <MMDrawerController/MMDrawerController.h>
 
+@interface BLAppDelegate ()
+- (NSArray *)initializeNavigation;
+@end
+
 @implementation BLAppDelegate
 
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    UIViewController *leftDrawer = [[BLDrawerViewController alloc] init];
-    UIViewController *center = [[BLCenterViewController alloc] init];
+    BLDrawerViewController *leftDrawer = [[BLDrawerViewController alloc] init];
+    BLCenterViewController *center = [[BLCenterViewController alloc] init];
     UINavigationController *leftNav = [[UINavigationController alloc] initWithRootViewController:leftDrawer];
     UINavigationController *centerNav = [[UINavigationController alloc] initWithRootViewController:center];
     MMDrawerController *drawerController =[[MMDrawerController alloc] initWithCenterViewController:centerNav
                                                                           leftDrawerViewController:leftNav];
+    
+    [leftDrawer setDataSource:[self initializeNavigation]];
     [drawerController setShowsShadow:YES];
     [drawerController setMaximumLeftDrawerWidth:160.0f];
     [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
@@ -62,6 +68,25 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+# pragma mark - initialization
+- (NSArray *)initializeNavigation
+{
+    NSMutableArray *sections = [[NSMutableArray alloc] init];
+    
+    NSMutableArray *section = [[NSMutableArray alloc] init];
+    [section addObject:@"Home"];
+    [section addObject:@"Foo"];
+    [section addObject:@"Bar"];
+    [sections addObject:section];
+    
+    section = [[NSMutableArray alloc] init];
+    [section addObject:@"Settings"];
+    [section addObject:@"Hello"];
+    [sections addObject:section];
+    
+    return [NSArray arrayWithArray:sections];
 }
 
 @end

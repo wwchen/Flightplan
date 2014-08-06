@@ -8,6 +8,8 @@
 
 #import "BLViewController.h"
 
-@interface BLDrawerViewController : BLViewController
+@interface BLDrawerViewController : BLViewController <UITableViewDataSource, UITableViewDelegate>
 
+@property (strong, nonatomic) NSArray *dataSource;
+@property (strong, nonatomic) UITableView *tableView;
 @end
