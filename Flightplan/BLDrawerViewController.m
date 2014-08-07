@@ -16,6 +16,7 @@ const CGFloat BLkDrawerWidth = 140.0f;
 @interface BLDrawerViewController ()
 
 - (BLDrawerItem *)itemAtIndexPath:(NSIndexPath *)indexPath;
+@property (strong, nonatomic) NSIndexPath *lastIndexPath;
 
 @end
 
@@ -79,20 +80,18 @@ const CGFloat BLkDrawerWidth = 140.0f;
 {
     NSLog(@"selected %@", indexPath);
     BLDrawerItem *item = [self itemAtIndexPath:indexPath];
-    if ([tableView indexPathForSelectedRow] != indexPath)
-    {
-        [self.mm_drawerController closeDrawerAnimated:YES completion:nil];
-        return;
-    }
     
     if (item.valueType == BLDrawerItemTypeLink)
     {
-        UINavigationController *ctrl = (UINavigationController *) [self.mm_drawerController centerViewController];
-        [ctrl pushViewController:item.value animated:YES];
-        //[self.mm_drawerController closeDrawerAnimated:YES completion:nil];
-        [self.mm_drawerController setCenterViewController:ctrl withCloseAnimation:YES completion:nil];
-        //[self.mm_drawerController setCenterViewController:item.value withCloseAnimation:YES completion:nil];
+        if ([self.lastIndexPath section] != indexPath.section ||
+            [self.lastIndexPath row] != indexPath.row)
+        {
+            UINavigationController *nav = (UINavigationController *) [self.mm_drawerController centerViewController];
+            [nav pushViewController:item.value animated:NO];
+        }
+        [self.mm_drawerController closeDrawerAnimated:YES completion:nil];
     }
+    self.lastIndexPath = indexPath;
 }
 
 # pragma mark - Accessor
