@@ -11,6 +11,8 @@
 #import "BLCenterViewController.h"
 #import <MMDrawerController/MMDrawerController.h>
 
+BLAppDelegate *app;
+
 @interface BLAppDelegate ()
 @end
 
@@ -18,6 +20,7 @@
 
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    app = self;
     BLDrawerViewController *leftDrawer = [[BLNavDrawerViewController alloc] init];
     BLCenterViewController *center = [[BLCenterViewController alloc] init];
     UINavigationController *centerNav = [[UINavigationController alloc] initWithRootViewController:center];
@@ -32,6 +35,7 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setRootViewController:drawerController];
+    self.mainView = centerNav;
     return YES;
 }
 

@@ -86,8 +86,7 @@ const CGFloat BLkDrawerWidth = 140.0f;
         if ([self.lastIndexPath section] != indexPath.section ||
             [self.lastIndexPath row] != indexPath.row)
         {
-            UINavigationController *nav = (UINavigationController *) [self.mm_drawerController centerViewController];
-            [nav pushViewController:item.value animated:NO];
+            [BLApp.mainView pushViewController:item.value animated:NO];
         }
         [self.mm_drawerController closeDrawerAnimated:YES completion:nil];
     }
