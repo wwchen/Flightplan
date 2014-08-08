@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Brewliant Labs. All rights reserved.
 //
 
+#import "BLCenterViewController.h"
 #import "BLDrawerViewController.h"
 #import "BLDrawerSection.h"
 #import "BLDrawerItem.h"
@@ -16,7 +17,6 @@ const CGFloat BLkDrawerWidth = 140.0f;
 @interface BLDrawerViewController ()
 
 - (BLDrawerItem *)itemAtIndexPath:(NSIndexPath *)indexPath;
-@property (strong, nonatomic) NSIndexPath *lastIndexPath;
 
 @end
 
@@ -83,14 +83,10 @@ const CGFloat BLkDrawerWidth = 140.0f;
     
     if (item.valueType == BLDrawerItemTypeLink)
     {
-        if ([self.lastIndexPath section] != indexPath.section ||
-            [self.lastIndexPath row] != indexPath.row)
-        {
-            [BLApp.mainView pushViewController:item.value animated:NO];
-        }
+        BLCenterViewController *view = [[NSClassFromString(item.value) alloc] init];
+        [BLApp.mainView pushViewController:view animated:NO];
         [self.mm_drawerController closeDrawerAnimated:YES completion:nil];
     }
-    self.lastIndexPath = indexPath;
 }
 
 # pragma mark - Accessor

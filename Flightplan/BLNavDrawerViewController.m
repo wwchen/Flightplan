@@ -36,8 +36,7 @@
     
     
     section = [[BLDrawerSection alloc] init];
-    BLAboutViewController *aboutView = [[BLAboutViewController alloc] init];
-    item = [[BLDrawerItem alloc] initWithLabel:@"About" valueType:BLDrawerItemTypeLink value:aboutView];
+    item = [[BLDrawerItem alloc] initWithLabel:@"About" valueType:BLDrawerItemTypeLink value:NSStringFromClass([BLAboutViewController class])];
     [section.items addObject:item];
     
     item = [[BLDrawerItem alloc] initWithLabel:@"Foo" valueType:BLDrawerItemTypeLabel value:nil];
