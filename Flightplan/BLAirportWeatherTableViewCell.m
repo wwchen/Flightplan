@@ -44,7 +44,8 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    self.label.frame = self.frame;
+    [self.label setFrame:self.frame];
+    [self.label setNumberOfLines:0];
     [self addSubview:self.label];
 }
 

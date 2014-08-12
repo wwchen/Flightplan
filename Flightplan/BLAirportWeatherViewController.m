@@ -27,6 +27,7 @@
         [self.tableView setDataSource:self];
         [self.tableView setDelegate:self];
         [self.tableView setRowHeight:[BLAirportWeatherTableViewCell height]];
+        [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
         [self.dataSource addObject:@"kpae"];
         [self.view addSubview:self.tableView];
     }
