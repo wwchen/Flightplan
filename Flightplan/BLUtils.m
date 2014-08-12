@@ -28,4 +28,11 @@
     return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 }
 
++ (NSString *) configForKey:(NSString *)keyPath
+{
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"BLConfig" ofType:@"plist"];
+    NSDictionary *config = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+    return [config valueForKeyPath:keyPath];
+}
+
 @end

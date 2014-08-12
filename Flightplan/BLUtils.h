@@ -8,4 +8,5 @@
 
 @interface BLUtils : NSObject
 + (id) dataForUrl:(NSString *)urlString;
++ (NSString *) configForKey:(NSString *)keyPath;
 @end

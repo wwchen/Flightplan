@@ -26,9 +26,9 @@
     self = [self init];
     if (self)
     {
-        NSURL *url = [[NSURL alloc] initWithString:@"https://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=KPAE&hoursBeforeNow=1"];
+        NSString *urlString = [BLUtils configForKey:@"WeatherXMLURL"];
         BLXMLReader *xmlReader = [[BLXMLReader alloc] init];
-        [xmlReader parseWithURL:url completionHandler:^(BLXMLElement *root, NSError *error) {
+        [xmlReader parseWithURL:[NSURL URLWithString:urlString] completionHandler:^(BLXMLElement *root, NSError *error) {
             NSString *metar = [xmlReader nodeValueWithKeyPath:@"response.data.METAR.raw_text"];
             [self.label setText:metar];
         }];

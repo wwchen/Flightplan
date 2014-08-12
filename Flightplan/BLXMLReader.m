@@ -95,11 +95,14 @@
         keyIndex++;
     }
 
-    if ([elements count] > 1)
-    {
-        return [NSArray arrayWithArray:elements];
+    switch ([elements count]) {
+        case 0:
+            return nil;
+        case 1:
+            return [elements objectAtIndex:0];
+        default:
+            return [NSArray arrayWithArray:elements];
     }
-    return [elements objectAtIndex:0];
 }
 
 #pragma mark - NSXMLParserDelegate
