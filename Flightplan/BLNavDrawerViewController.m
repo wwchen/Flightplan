@@ -10,6 +10,7 @@
 #import "BLDrawerSection.h"
 #import "BLDrawerItem.h"
 #import "BLAboutViewController.h"
+#import "BLAirportWeatherViewController.h"
 
 @interface BLNavDrawerViewController ()
 
@@ -29,7 +30,7 @@
     item = [[BLDrawerItem alloc] initWithLabel:@"Settings" valueType:BLDrawerItemTypeLink value:nil];
     [section.items addObject:item];
     
-    item = [[BLDrawerItem alloc] initWithLabel:@"Bar" valueType:BLDrawerItemTypeLabel value:nil];
+    item = [[BLDrawerItem alloc] initWithLabel:@"Weather" valueType:BLDrawerItemTypeLink value:NSStringFromClass([BLAirportWeatherViewController class])];
     [section.items addObject:item];
     
     [sections addObject:section];

@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		7152888A8E01453E88F55484 /* libPods-Flightplan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D724561307A43C49DECF80F /* libPods-Flightplan.a */; };
+		980C324819995A1D0076AB05 /* BLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C324719995A1D0076AB05 /* BLUtils.m */; };
+		980C324B19995E050076AB05 /* BLAirportWeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C324A19995E050076AB05 /* BLAirportWeatherViewController.m */; };
+		980C324E19995E900076AB05 /* BLAirportWeatherTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C324D19995E900076AB05 /* BLAirportWeatherTableViewCell.m */; };
+		980C325319998E5E0076AB05 /* BLXMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C325219998E5E0076AB05 /* BLXMLReader.m */; };
 		9814964B1991F8F500DF0D35 /* BLNavDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9814964A1991F8F500DF0D35 /* BLNavDrawerViewController.m */; };
 		985AD72919929BC600EF47D7 /* BLDrawerSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 985AD72819929BC600EF47D7 /* BLDrawerSection.m */; };
 		985AD72C19929BD500EF47D7 /* BLDrawerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 985AD72B19929BD500EF47D7 /* BLDrawerItem.m */; };
@@ -44,6 +48,14 @@
 /* Begin PBXFileReference section */
 		3D724561307A43C49DECF80F /* libPods-Flightplan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Flightplan.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		42512F7E1F2146759ED30161 /* Pods-Flightplan.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flightplan.xcconfig"; path = "Pods/Pods-Flightplan.xcconfig"; sourceTree = "<group>"; };
+		980C324619995A1D0076AB05 /* BLUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLUtils.h; sourceTree = "<group>"; };
+		980C324719995A1D0076AB05 /* BLUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLUtils.m; sourceTree = "<group>"; };
+		980C324919995E050076AB05 /* BLAirportWeatherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLAirportWeatherViewController.h; sourceTree = "<group>"; };
+		980C324A19995E050076AB05 /* BLAirportWeatherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLAirportWeatherViewController.m; sourceTree = "<group>"; };
+		980C324C19995E900076AB05 /* BLAirportWeatherTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLAirportWeatherTableViewCell.h; sourceTree = "<group>"; };
+		980C324D19995E900076AB05 /* BLAirportWeatherTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLAirportWeatherTableViewCell.m; sourceTree = "<group>"; };
+		980C325119998E5E0076AB05 /* BLXMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLXMLReader.h; sourceTree = "<group>"; };
+		980C325219998E5E0076AB05 /* BLXMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLXMLReader.m; sourceTree = "<group>"; };
 		981496491991F8F500DF0D35 /* BLNavDrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLNavDrawerViewController.h; sourceTree = "<group>"; };
 		9814964A1991F8F500DF0D35 /* BLNavDrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLNavDrawerViewController.m; sourceTree = "<group>"; };
 		985AD72719929BC600EF47D7 /* BLDrawerSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLDrawerSection.h; sourceTree = "<group>"; };
@@ -103,6 +115,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		980C3250199973800076AB05 /* Airport Weather */ = {
+			isa = PBXGroup;
+			children = (
+				980C324C19995E900076AB05 /* BLAirportWeatherTableViewCell.h */,
+				980C324D19995E900076AB05 /* BLAirportWeatherTableViewCell.m */,
+				980C324919995E050076AB05 /* BLAirportWeatherViewController.h */,
+				980C324A19995E050076AB05 /* BLAirportWeatherViewController.m */,
+			);
+			name = "Airport Weather";
+			sourceTree = "<group>";
+		};
 		985AD72D1992D5AA00EF47D7 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +174,11 @@
 			children = (
 				98F5119D1991563C00C2E2E2 /* BLAppDelegate.h */,
 				98F5119E1991563C00C2E2E2 /* BLAppDelegate.m */,
+				980C324619995A1D0076AB05 /* BLUtils.h */,
+				980C324719995A1D0076AB05 /* BLUtils.m */,
+				980C325119998E5E0076AB05 /* BLXMLReader.h */,
+				980C325219998E5E0076AB05 /* BLXMLReader.m */,
+				980C3250199973800076AB05 /* Airport Weather */,
 				985AD72D1992D5AA00EF47D7 /* View Controllers */,
 				98F511C6199157AE00C2E2E2 /* Base View Controllers */,
 				98F511A01991563C00C2E2E2 /* Main_iPhone.storyboard */,
@@ -341,7 +369,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				980C324E19995E900076AB05 /* BLAirportWeatherTableViewCell.m in Sources */,
+				980C324B19995E050076AB05 /* BLAirportWeatherViewController.m in Sources */,
 				985AD7301992D5D100EF47D7 /* BLAboutViewController.m in Sources */,
+				980C325319998E5E0076AB05 /* BLXMLReader.m in Sources */,
 				985AD72C19929BD500EF47D7 /* BLDrawerItem.m in Sources */,
 				98F511A81991563C00C2E2E2 /* BLViewController.m in Sources */,
 				9814964B1991F8F500DF0D35 /* BLNavDrawerViewController.m in Sources */,
@@ -350,6 +381,7 @@
 				98F5119B1991563C00C2E2E2 /* main.m in Sources */,
 				98F511CC199158CC00C2E2E2 /* BLDrawerViewController.m in Sources */,
 				985AD72919929BC600EF47D7 /* BLDrawerSection.m in Sources */,
+				980C324819995A1D0076AB05 /* BLUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
