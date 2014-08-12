@@ -14,8 +14,6 @@
     self = [super init];
     if (self)
     {
-        self.name = nil;
-        self.attributes = [[NSDictionary alloc] init];
         self.value = [[NSMutableArray alloc] init];
     }
     return self;
@@ -35,31 +33,38 @@
 
 @implementation BLXMLReader
 
-- (id)initWithURL:(NSURL *)url
+- (id)init
 {
     self = [super init];
     if (self)
     {
-        self.parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
-        [self.parser setDelegate:self];
         self.textInProgress = [[NSMutableString alloc] init];
-        
+        self.root = [[BLXMLElement alloc] init];
+        self.elementStack = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
+- (void)parseWithURL:(NSURL *)url completionHandler:(void (^)(BLXMLElement *root, NSError *error)) completionHandler
+{
+    self.url = url;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
+        [self.parser setDelegate:self];
+        [self.parser parse];
+        completionHandler(self.root, self.errorPointer);
+    });
+}
+
 - (id)nodeValueWithKeyPath:(NSString *)keyPath
 {
-    if (!self.root)
-    {
-        self.root = [[BLXMLElement alloc] init];
-        self.elementStack = [[NSMutableArray alloc] init];
-        
-        [self.parser parse];
-    }
+    return [BLXMLReader nodeValueWithKeyPath:keyPath inElement:self.root];
+}
+
++ (id)nodeValueWithKeyPath:(NSString *)keyPath inElement:(BLXMLElement *)root
+{
     NSArray *keys = [keyPath componentsSeparatedByString:@"."];
-    
-    NSMutableArray *elements = [NSMutableArray arrayWithObject:self.root];
+    NSMutableArray *elements = [NSMutableArray arrayWithObject:root];
     NSInteger keyIndex = 0;
     while (keyIndex < [keys count])
     {
@@ -101,11 +106,12 @@
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
-    // Create the child dictionary for the new element, and initilaize it with the attributes
     BLXMLElement *childElement;
     if ([self.elementStack count] > 0)
     {
         childElement = [[BLXMLElement alloc] init];
+        BLXMLElement *parentElement = [self.elementStack lastObject];
+        [parentElement.value addObject:childElement];
     }
     else
     {
@@ -114,12 +120,6 @@
     
     childElement.name = elementName;
     childElement.attributes = attributeDict;
-    
-    if ([self.elementStack count] > 0)
-    {
-        BLXMLElement *parentElement = [self.elementStack lastObject];
-        [parentElement.value addObject:childElement];
-    }
     
     [self.elementStack addObject:childElement];
 }
