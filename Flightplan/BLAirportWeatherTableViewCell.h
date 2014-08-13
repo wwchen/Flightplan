@@ -6,9 +6,14 @@
 //  Copyright (c) 2014 Brewliant Labs. All rights reserved.
 //
 
-@interface BLAirportWeatherTableViewCell : UITableViewCell
-@property (strong, nonatomic) UILabel *label;
+#import "BLTableViewCell.h"
+
+@interface BLAirportWeatherTableViewCell : BLTableViewCell
+@property (strong, nonatomic) IBOutlet UILabel *title;
+//@property (strong, nonatomic) IBOutlet UIImage *status;
+@property (strong, nonatomic) IBOutlet UILabel *metar;
+@property (strong, nonatomic) IBOutlet UILabel *taf;
+@property (strong, nonatomic) NSString *airportIdentifier;
 @property (strong, nonatomic) id dataSource;
-- (id)initWithICAO:(NSString *)icao;
 + (CGFloat) height;
 @end

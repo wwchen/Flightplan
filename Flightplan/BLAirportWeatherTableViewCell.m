@@ -9,44 +9,34 @@
 #import "BLAirportWeatherTableViewCell.h"
 #import "BLXMLReader.h"
 
+@interface BLAirportWeatherTableViewCell ()
+@property (strong, nonatomic) NSString *metarString;
+@end
+
 @implementation BLAirportWeatherTableViewCell
 
-- (id)init
+- (void)awakeFromNib
 {
-    self = [super init];
-    if (self)
-    {
-        self.label = [[UILabel alloc] init];
-    }
-    return self;
 }
 
-- (id)initWithICAO:(NSString *)icao
+- (void)setAirportIdentifier:(NSString *)airportIdentifier
 {
-    self = [self init];
-    if (self)
-    {
-        NSString *urlString = [BLUtils configForKey:@"WeatherXMLURL"];
-        BLXMLReader *xmlReader = [[BLXMLReader alloc] init];
-        [xmlReader parseWithURL:[NSURL URLWithString:urlString] completionHandler:^(BLXMLElement *root, NSError *error) {
-            NSString *metar = [xmlReader nodeValueWithKeyPath:@"response.data.METAR.raw_text"];
-            [self.label setText:metar];
-        }];
-    }
-    return self;
-}
-
-- (NSDictionary *)metarInformationFromXML:(NSDictionary *)xml
-{
-    return xml;
-}
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    [self.label setFrame:self.frame];
-    [self.label setNumberOfLines:0];
-    [self addSubview:self.label];
+    _airportIdentifier = airportIdentifier;
+    
+    NSString *urlString = [BLUtils configForKey:@"WeatherXMLURL"];
+    BLXMLReader *xmlReader = [[BLXMLReader alloc] init];
+    [xmlReader parseWithURL:[NSURL URLWithString:urlString] completionHandler:^(BLXMLElement *root, NSError *error) {
+        id response = [xmlReader nodeValueWithKeyPath:@"response.data.METAR.raw_text"];
+        if ([response isKindOfClass:[NSArray class]])
+        {
+            [self.metar setText:[response objectAtIndex:0]];
+        }
+        else
+        {
+            [self.metar setText:response];
+        }
+    }];
+    
 }
 
 + (CGFloat) height

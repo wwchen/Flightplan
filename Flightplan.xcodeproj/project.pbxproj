@@ -13,6 +13,8 @@
 		980C324E19995E900076AB05 /* BLAirportWeatherTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C324D19995E900076AB05 /* BLAirportWeatherTableViewCell.m */; };
 		980C325319998E5E0076AB05 /* BLXMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C325219998E5E0076AB05 /* BLXMLReader.m */; };
 		980C3255199AA52B0076AB05 /* BLConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 980C3254199AA52B0076AB05 /* BLConfig.plist */; };
+		980C3258199B2FBC0076AB05 /* BLAirportWeatherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 980C3257199B2FBC0076AB05 /* BLAirportWeatherTableViewCell.xib */; };
+		980C325B199B45DD0076AB05 /* BLTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 980C325A199B45DD0076AB05 /* BLTableViewCell.m */; };
 		9814964B1991F8F500DF0D35 /* BLNavDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9814964A1991F8F500DF0D35 /* BLNavDrawerViewController.m */; };
 		985AD72919929BC600EF47D7 /* BLDrawerSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 985AD72819929BC600EF47D7 /* BLDrawerSection.m */; };
 		985AD72C19929BD500EF47D7 /* BLDrawerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 985AD72B19929BD500EF47D7 /* BLDrawerItem.m */; };
@@ -58,6 +60,9 @@
 		980C325119998E5E0076AB05 /* BLXMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLXMLReader.h; sourceTree = "<group>"; };
 		980C325219998E5E0076AB05 /* BLXMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLXMLReader.m; sourceTree = "<group>"; };
 		980C3254199AA52B0076AB05 /* BLConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BLConfig.plist; sourceTree = "<group>"; };
+		980C3257199B2FBC0076AB05 /* BLAirportWeatherTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BLAirportWeatherTableViewCell.xib; sourceTree = "<group>"; };
+		980C3259199B45DD0076AB05 /* BLTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLTableViewCell.h; sourceTree = "<group>"; };
+		980C325A199B45DD0076AB05 /* BLTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLTableViewCell.m; sourceTree = "<group>"; };
 		981496491991F8F500DF0D35 /* BLNavDrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLNavDrawerViewController.h; sourceTree = "<group>"; };
 		9814964A1991F8F500DF0D35 /* BLNavDrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLNavDrawerViewController.m; sourceTree = "<group>"; };
 		985AD72719929BC600EF47D7 /* BLDrawerSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLDrawerSection.h; sourceTree = "<group>"; };
@@ -122,6 +127,7 @@
 			children = (
 				980C324C19995E900076AB05 /* BLAirportWeatherTableViewCell.h */,
 				980C324D19995E900076AB05 /* BLAirportWeatherTableViewCell.m */,
+				980C3257199B2FBC0076AB05 /* BLAirportWeatherTableViewCell.xib */,
 				980C324919995E050076AB05 /* BLAirportWeatherViewController.h */,
 				980C324A19995E050076AB05 /* BLAirportWeatherViewController.m */,
 			);
@@ -226,6 +232,8 @@
 			children = (
 				98F511A61991563C00C2E2E2 /* BLViewController.h */,
 				98F511A71991563C00C2E2E2 /* BLViewController.m */,
+				980C3259199B45DD0076AB05 /* BLTableViewCell.h */,
+				980C325A199B45DD0076AB05 /* BLTableViewCell.m */,
 				98F511C71991588500C2E2E2 /* BLCenterViewController.h */,
 				98F511C81991588500C2E2E2 /* BLCenterViewController.m */,
 				98F511CA199158CC00C2E2E2 /* BLDrawerViewController.h */,
@@ -319,6 +327,7 @@
 			files = (
 				98F511A51991563C00C2E2E2 /* Main_iPad.storyboard in Resources */,
 				980C3255199AA52B0076AB05 /* BLConfig.plist in Resources */,
+				980C3258199B2FBC0076AB05 /* BLAirportWeatherTableViewCell.xib in Resources */,
 				98F511AA1991563C00C2E2E2 /* Images.xcassets in Resources */,
 				98F511A21991563C00C2E2E2 /* Main_iPhone.storyboard in Resources */,
 				98F511991991563C00C2E2E2 /* InfoPlist.strings in Resources */,
@@ -384,6 +393,7 @@
 				98F5119F1991563C00C2E2E2 /* BLAppDelegate.m in Sources */,
 				98F5119B1991563C00C2E2E2 /* main.m in Sources */,
 				98F511CC199158CC00C2E2E2 /* BLDrawerViewController.m in Sources */,
+				980C325B199B45DD0076AB05 /* BLTableViewCell.m in Sources */,
 				985AD72919929BC600EF47D7 /* BLDrawerSection.m in Sources */,
 				980C324819995A1D0076AB05 /* BLUtils.m in Sources */,
 			);

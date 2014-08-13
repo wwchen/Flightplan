@@ -30,6 +30,9 @@
         [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
         [self.dataSource addObject:@"kpae"];
         [self.view addSubview:self.tableView];
+        
+        UINib *cellNib = [UINib nibWithNibName:[BLAirportWeatherTableViewCell nibName] bundle:nil];
+        [self.tableView registerNib:cellNib forCellReuseIdentifier:[BLAirportWeatherTableViewCell reuseIdentifer]];
     }
     NSLog(@"viewDidLoad");
 }
@@ -37,8 +40,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"cellForRowAtIndexPath");
+    BLAirportWeatherTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[BLAirportWeatherTableViewCell reuseIdentifer]];
     NSString *icao = [self.dataSource objectAtIndex:indexPath.row];
-    BLAirportWeatherTableViewCell *cell = [[BLAirportWeatherTableViewCell alloc] initWithICAO:icao];
+    [cell setAirportIdentifier:icao];
     return cell;
 }
 
