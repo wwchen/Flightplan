@@ -35,6 +35,16 @@
         {
             [self.metar setText:response];
         }
+        
+        response = [xmlReader nodeValueWithKeyPath:@"response.data.METAR.station_id"];
+        if ([response isKindOfClass:[NSArray class]])
+        {
+            [self.title setText:[response objectAtIndex:0]];
+        }
+        else
+        {
+            [self.title setText:response];
+        }
     }];
     
 }

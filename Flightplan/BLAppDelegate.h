@@ -11,7 +11,7 @@
 @interface BLAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) UINavigationController *mainView;
+@property (strong, nonatomic) UINavigationController *mainNavController;
 
 @end
 

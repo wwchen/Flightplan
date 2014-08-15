@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>WeatherXMLURL</key>
-	<string>https://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&amp;requestType=retrieve&amp;format=xml&amp;stationString=KPAE&amp;hoursBeforeNow=1</string>
+	<string>https://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&amp;requestType=retrieve&amp;format=xml&amp;stationString=KPAE&amp;hoursBeforeNow=2</string>
 </dict>
 </plist>

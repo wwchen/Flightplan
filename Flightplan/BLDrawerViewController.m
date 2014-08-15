@@ -84,7 +84,7 @@ const CGFloat BLkDrawerWidth = 140.0f;
     if (item.valueType == BLDrawerItemTypeLink)
     {
         BLCenterViewController *view = [[NSClassFromString(item.value) alloc] init];
-        [BLApp.mainView pushViewController:view animated:NO];
+        [BLApp.mainNavController pushViewController:view animated:NO];
         [self.mm_drawerController closeDrawerAnimated:YES completion:nil];
     }
 }

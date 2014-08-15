@@ -37,6 +37,7 @@
     
     
     section = [[BLDrawerSection alloc] init];
+    section.header = @"Settings";
     item = [[BLDrawerItem alloc] initWithLabel:@"About" valueType:BLDrawerItemTypeLink value:NSStringFromClass([BLAboutViewController class])];
     [section.items addObject:item];
     

@@ -35,7 +35,7 @@ BLAppDelegate *app;
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setRootViewController:drawerController];
-    self.mainView = centerNav;
+    self.mainNavController = centerNav;
     return YES;
 }
 
