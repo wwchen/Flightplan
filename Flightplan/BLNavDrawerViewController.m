@@ -11,6 +11,7 @@
 #import "BLDrawerItem.h"
 #import "BLAboutViewController.h"
 #import "BLAirportWeatherViewController.h"
+#import "BLChecklistViewController.h"
 
 @interface BLNavDrawerViewController ()
 
@@ -28,6 +29,9 @@
     [section.items addObject:item];
     
     item = [[BLDrawerItem alloc] initWithLabel:@"Settings" valueType:BLDrawerItemTypeLink value:nil];
+    [section.items addObject:item];
+    
+    item = [[BLDrawerItem alloc] initWithLabel:@"Preflight Checklist" valueType:BLDrawerItemTypeLink value:NSStringFromClass([BLChecklistViewController class])];
     [section.items addObject:item];
     
     item = [[BLDrawerItem alloc] initWithLabel:@"Weather" valueType:BLDrawerItemTypeLink value:NSStringFromClass([BLAirportWeatherViewController class])];

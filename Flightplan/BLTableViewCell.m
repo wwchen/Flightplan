@@ -20,4 +20,9 @@
     return NSStringFromClass([self class]);
 }
 
++ (CGFloat)height
+{
+    return 0.0f;
+}
+
 @end
