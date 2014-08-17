@@ -11,7 +11,7 @@
 
 @interface BLAirportWeatherTableViewCell () <NSURLConnectionDataDelegate>
 @property (strong, nonatomic) NSString *metarString;
-@property (strong, nonatomic) NSMutableData *requestData;
+@property (strong, nonatomic) NSMutableDictionary *receivedDataDictionary;
 @end
 
 @implementation BLAirportWeatherTableViewCell
@@ -28,6 +28,10 @@
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection connectionWithRequest:request delegate:self];
+    if (!self.receivedDataDictionary)
+    {
+        self.receivedDataDictionary = [NSMutableDictionary dictionary];
+    }
     // self.title and self.metar
     
 }
@@ -41,19 +45,24 @@
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     NSLog(@"Received data: %@", data);
-    if (!self.requestData)
+    NSString *key = [connection description];
+    NSMutableData *receivedData = [self.receivedDataDictionary objectForKey:key];
+    if (!receivedData)
     {
-        self.requestData = [[NSMutableData alloc] init];
+        receivedData = [[NSMutableData alloc] init];
+        [self.receivedDataDictionary setObject:receivedData forKey:key];
     }
-    [self.requestData appendData:data];
+    [receivedData appendData:data];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSError *error;
-    NSDictionary *xml = [BLXMLReader dictionaryFromXMLData:self.requestData error:&error];
+    NSString *key = [connection description];
+    NSData *data = [NSData dataWithData:[self.receivedDataDictionary objectForKey:key]];
+    NSDictionary *xml = [BLXMLReader dictionaryFromXMLData:data error:nil];
     NSArray *metarInfo = [xml valueForKeyPath:@"response.data.METAR"];
     [self.metar setText:[[metarInfo objectAtIndex:0] valueForKeyPath:@"raw_text.text"]];
+    [self.receivedDataDictionary removeObjectForKey:key];
 }
 
 @end
