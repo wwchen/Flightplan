@@ -9,8 +9,9 @@
 #import "BLAirportWeatherTableViewCell.h"
 #import "BLXMLReader.h"
 
-@interface BLAirportWeatherTableViewCell ()
+@interface BLAirportWeatherTableViewCell () <NSURLConnectionDataDelegate>
 @property (strong, nonatomic) NSString *metarString;
+@property (strong, nonatomic) NSMutableData *requestData;
 @end
 
 @implementation BLAirportWeatherTableViewCell
@@ -24,34 +25,35 @@
     _airportIdentifier = airportIdentifier;
     
     NSString *urlString = [BLUtils configForKey:@"WeatherXMLURL"];
-    BLXMLReader *xmlReader = [[BLXMLReader alloc] init];
-    [xmlReader parseWithURL:[NSURL URLWithString:urlString] completionHandler:^(BLXMLElement *root, NSError *error) {
-        id response = [xmlReader nodeValueWithKeyPath:@"response.data.METAR.raw_text"];
-        if ([response isKindOfClass:[NSArray class]])
-        {
-            [self.metar setText:[response objectAtIndex:0]];
-        }
-        else
-        {
-            [self.metar setText:response];
-        }
-        
-        response = [xmlReader nodeValueWithKeyPath:@"response.data.METAR.station_id"];
-        if ([response isKindOfClass:[NSArray class]])
-        {
-            [self.title setText:[response objectAtIndex:0]];
-        }
-        else
-        {
-            [self.title setText:response];
-        }
-    }];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection connectionWithRequest:request delegate:self];
+    // self.title and self.metar
     
 }
 
 + (CGFloat) height
 {
     return 100.0f;
+}
+
+#pragma mark - NSURLConnectionDataDelegate
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    NSLog(@"Received data: %@", data);
+    if (!self.requestData)
+    {
+        self.requestData = [[NSMutableData alloc] init];
+    }
+    [self.requestData appendData:data];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    NSError *error;
+    NSDictionary *xml = [BLXMLReader dictionaryFromXMLData:self.requestData error:&error];
+    NSArray *metarInfo = [xml valueForKeyPath:@"response.data.METAR"];
+    [self.metar setText:[[metarInfo objectAtIndex:0] valueForKeyPath:@"raw_text.text"]];
 }
 
 @end
