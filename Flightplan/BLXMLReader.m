@@ -6,141 +6,149 @@
 //  Copyright (c) 2014 Brewliant Labs. All rights reserved.
 //
 
+
 #import "BLXMLReader.h"
 
-@implementation BLXMLElement
-- (id)init
-{
-    self = [super init];
-    if (self)
-    {
-        self.value = [[NSMutableArray alloc] init];
-    }
-    return self;
-}
-@end
-
+NSString *const BLkXMLReaderTextNodeKey = @"text";
 
 @interface BLXMLReader ()
+@property (strong, nonatomic) NSMutableArray *dictionaryStack;
 @property (strong, nonatomic) NSMutableString *textInProgress;
 @property (strong, nonatomic) NSError *errorPointer;
-@property (strong, nonatomic) NSXMLParser *parser;
-
-@property (strong, nonatomic) BLXMLElement *root;
-@property (strong, nonatomic) NSMutableArray *elementStack;
-
+- (NSDictionary *)objectWithData:(NSData *)data;
 @end
+
 
 @implementation BLXMLReader
 
++ (NSDictionary *) dictionaryFromXMLData:(NSData *)data error:(NSError **)error
+{
+    NSDictionary *rootDictionary = nil;
+    
+    // The BLXMLReader instance is created for parsing a single xml data.
+    // We need to avoid singleton pattern here, since multiple threads
+    // could be parsing xml data simultaneously.
+    BLXMLReader *reader = [[BLXMLReader alloc] init];
+    if (reader)
+    {
+        rootDictionary = [reader objectWithData:data];
+        if (error)
+        {
+            *error = reader.errorPointer;
+        }
+    }
+    
+    return rootDictionary;
+}
+
++ (NSDictionary *) dictionaryFromXMLString:(NSString *)string error:(NSError **)error
+{
+    NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+    return [BLXMLReader dictionaryFromXMLData:data error:error];
+}
+
 - (id)init
 {
-    self = [super init];
-    if (self)
+    if (self = [super init])
     {
+        self.dictionaryStack = [[NSMutableArray alloc] init];
         self.textInProgress = [[NSMutableString alloc] init];
-        self.root = [[BLXMLElement alloc] init];
-        self.elementStack = [[NSMutableArray alloc] init];
+        self.errorPointer = nil;
     }
+    
     return self;
 }
 
-- (void)parseWithURL:(NSURL *)url completionHandler:(void (^)(BLXMLElement *root, NSError *error)) completionHandler
+- (NSDictionary *) objectWithData:(NSData *)data
 {
-    self.url = url;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
-        [self.parser setDelegate:self];
-        [self.parser parse];
-        completionHandler(self.root, self.errorPointer);
-    });
-}
-
-- (id)nodeValueWithKeyPath:(NSString *)keyPath
-{
-    return [BLXMLReader nodeValueWithKeyPath:keyPath inElement:self.root];
-}
-
-+ (id)nodeValueWithKeyPath:(NSString *)keyPath inElement:(BLXMLElement *)root
-{
-    NSArray *keys = [keyPath componentsSeparatedByString:@"."];
-    NSMutableArray *elements = [NSMutableArray arrayWithObject:root];
-    NSInteger keyIndex = 0;
-    while (keyIndex < [keys count])
+    // Initialize the stack with a fresh dictionary
+    [self.dictionaryStack addObject:[NSMutableDictionary dictionary]];
+    
+    // Parse the XML
+    NSXMLParser *parser = [[NSXMLParser alloc] initWithData:data];
+    parser.delegate = self;
+    BOOL success = [parser parse];
+    
+    // Return the stack's root dictionary on success
+    if (success)
     {
-        NSString *key = [keys objectAtIndex:keyIndex];
-        NSMutableArray *childElements = [NSMutableArray array];
-        NSInteger elementIndex = 0;
-        while (elementIndex < [elements count])
-        {
-            id object = [elements objectAtIndex:elementIndex];
-            if ([object isKindOfClass:[BLXMLElement class]])
-            {
-                BLXMLElement *element = (BLXMLElement *) object;
-                if ([element.name isEqualToString:key])
-                {
-                    if ([element.value isKindOfClass:[NSMutableArray class]])
-                    {
-                        [childElements addObjectsFromArray:element.value];
-                    }
-                    else
-                    {
-                        [childElements addObject:element.value];
-                    }
-                }
-            }
-            elementIndex++;
-        }
-        elements = childElements;
-        keyIndex++;
+        NSDictionary *resultDict = [self.dictionaryStack objectAtIndex:0];
+        return resultDict;
     }
-
-    switch ([elements count]) {
-        case 0:
-            return nil;
-        case 1:
-            return [elements objectAtIndex:0];
-        default:
-            return [NSArray arrayWithArray:elements];
-    }
+    
+    return nil;
 }
 
 #pragma mark - NSXMLParserDelegate
 
-- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
+- (void) parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName
+                                         namespaceURI:(NSString *)namespaceURI
+                                        qualifiedName:(NSString *)qName
+                                           attributes:(NSDictionary *)attributeDict
 {
-    BLXMLElement *childElement;
-    if ([self.elementStack count] > 0)
+    // Get the dictionary for the current level in the stack
+    NSMutableDictionary *parentDict = [self.dictionaryStack lastObject];
+    
+    // Create the child dictionary for the new element, and initilaize it with the attributes
+    NSMutableDictionary *childDict = [NSMutableDictionary dictionary];
+    [childDict addEntriesFromDictionary:attributeDict];
+    
+    // If there's already an item for this key, it means we need to create an array
+    id existingValue = [parentDict objectForKey:elementName];
+    if (existingValue)
     {
-        childElement = [[BLXMLElement alloc] init];
-        BLXMLElement *parentElement = [self.elementStack lastObject];
-        [parentElement.value addObject:childElement];
+        NSMutableArray *array = nil;
+        if ([existingValue isKindOfClass:[NSMutableArray class]])
+        {
+            // The array exists, so use it
+            array = (NSMutableArray *) existingValue;
+        }
+        else
+        {
+            // Create an array if it doesn't exist
+            array = [NSMutableArray array];
+            [array addObject:existingValue];
+            
+            // Replace the child dictionary with an array of children dictionaries
+            [parentDict setObject:array forKey:elementName];
+        }
+        
+        // Add the new child dictionary to the array
+        [array addObject:childDict];
     }
     else
     {
-        childElement = self.root;
+        // No existing value, so update the dictionary
+        [parentDict setObject:childDict forKey:elementName];
     }
     
-    childElement.name = elementName;
-    childElement.attributes = attributeDict;
-    
-    [self.elementStack addObject:childElement];
+    // Update the stack
+    [self.dictionaryStack addObject:childDict];
 }
 
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
+- (void) parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
+                                       namespaceURI:(NSString *)namespaceURI
+                                      qualifiedName:(NSString *)qName
 {
-    BLXMLElement *elementInProgress = [self.elementStack lastObject];
+    // Update the parent dict with text info
+    NSMutableDictionary *dictInProgress = [self.dictionaryStack lastObject];
     
-    if ([elementInProgress.value count] == 0)
+    // Set the text property
+    if ([self.textInProgress length] > 0)
     {
-        elementInProgress.value = [NSString stringWithString:self.textInProgress];
+        [dictInProgress setObject:self.textInProgress forKey:BLkXMLReaderTextNodeKey];
+        
+        // Reset the text
+        self.textInProgress = [[NSMutableString alloc] init];
     }
     
-    [self.elementStack removeLastObject];
+    // Pop the current dict
+    [self.dictionaryStack removeLastObject];
 }
 
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
+- (void) parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
+    // Build the text value
     [self.textInProgress setString:string];
     [self.textInProgress replaceOccurrencesOfString:@"^[ \t\n]*$"
                                          withString:@""
@@ -148,8 +156,9 @@
                                               range:NSMakeRange(0, [self.textInProgress length])];
 }
 
-- (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
+- (void) parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
 {
+    // Set the error pointer to the parser's error object
     self.errorPointer = parseError;
 }
 
