@@ -7,13 +7,22 @@
 //
 
 #import "BLAirportWeatherTableViewCell.h"
+#import "BLURLConnectionManager.h"
 #import "BLXMLReader.h"
+
+typedef NS_ENUM(NSInteger, BLURLConnectionType)
+{
+    BLURLConnectionMETARType,
+    BLURLConnectionTAFType,
+};
+
+
+#pragma mark -
 
 @interface BLAirportWeatherTableViewCell () <NSURLConnectionDataDelegate>
 @property (strong, nonatomic) NSString *metarString;
-@property (strong, nonatomic) NSMutableDictionary *receivedDataDictionary;
+@property (strong, nonatomic) BLURLConnectionManager *manager;
 @end
-
 @implementation BLAirportWeatherTableViewCell
 
 - (void)awakeFromNib
@@ -27,11 +36,9 @@
     NSString *urlString = [BLUtils configForKey:@"WeatherXMLURL"];
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [NSURLConnection connectionWithRequest:request delegate:self];
-    if (!self.receivedDataDictionary)
-    {
-        self.receivedDataDictionary = [NSMutableDictionary dictionary];
-    }
+    NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
+    self.manager = [[BLURLConnectionManager alloc] init];
+    [self.manager setConnection:connection asType:BLURLConnectionMETARType];
     // self.title and self.metar
     
 }
@@ -44,25 +51,49 @@
 #pragma mark - NSURLConnectionDataDelegate
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    NSLog(@"Received data: %@", data);
-    NSString *key = [connection description];
-    NSMutableData *receivedData = [self.receivedDataDictionary objectForKey:key];
-    if (!receivedData)
-    {
-        receivedData = [[NSMutableData alloc] init];
-        [self.receivedDataDictionary setObject:receivedData forKey:key];
-    }
-    [receivedData appendData:data];
+    [[self.manager dataWithConnection:connection] appendData:data];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSString *key = [connection description];
-    NSData *data = [NSData dataWithData:[self.receivedDataDictionary objectForKey:key]];
-    NSDictionary *xml = [BLXMLReader dictionaryFromXMLData:data error:nil];
-    NSArray *metarInfo = [xml valueForKeyPath:@"response.data.METAR"];
-    [self.metar setText:[[metarInfo objectAtIndex:0] valueForKeyPath:@"raw_text.text"]];
-    [self.receivedDataDictionary removeObjectForKey:key];
+    NSMutableData *data = [self.manager dataWithConnection:connection];
+    switch ([self.manager typeWithConnection:connection]) {
+        case BLURLConnectionMETARType:
+        {
+            NSDictionary *xml = [BLXMLReader dictionaryFromXMLData:data error:nil];
+            NSInteger resultCount = [[xml valueForKeyPath:@"response.data.num_results"] integerValue];
+            if (resultCount > 0)
+            {
+                NSDictionary *metarInfo = [[xml valueForKeyPath:@"response.data.METAR"] objectAtIndex:0];
+                [self.metar setText:[metarInfo valueForKeyPath:@"raw_text.text"]];
+                [self.title setText:[metarInfo valueForKeyPath:@"station_id.text"]];
+                id skyConditions = [metarInfo valueForKeyPath:@"sky_condition"];
+                if ([skyConditions isKindOfClass:[NSArray class]] && [skyConditions count] > 0)
+                {
+                    NSMutableString *skyConditionString = [NSMutableString string];
+                    for (int i = 0; i < [skyConditions count]; i++)
+                    {
+                        NSDictionary *skyConditionInfo = [skyConditions objectAtIndex:i];
+                        NSString *infoString = [NSString stringWithFormat:@"%@: %@", [skyConditionInfo objectForKey:@"sky_cover"],
+                                                                                     [skyConditionInfo objectForKey:@"cloud_base_ft_agl"]];
+                        [skyConditionString appendString:infoString];
+                    }
+                    [self.skyCondition setText:skyConditionString];
+                }
+                else
+                {
+                    NSString *infoString = [NSString stringWithFormat:@"%@: %@", [skyConditions objectForKey:@"sky_cover"],
+                                                                                 [skyConditions objectForKey:@"cloud_base_ft_agl"]];
+                    [self.skyCondition setText:infoString];
+                }
+            }
+            break;
+        }
+        default:
+            break;
+    }
+    
+    [self.manager removeConnection:connection];
 }
 
 @end

@@ -22,6 +22,7 @@
 		98CDCFAB199DCCE600418FC4 /* BLChecklistTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 98CDCFAA199DCCE600418FC4 /* BLChecklistTableViewCell.m */; };
 		98CDCFAD199DCD0A00418FC4 /* BLChecklistTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98CDCFAC199DCD0A00418FC4 /* BLChecklistTableViewCell.xib */; };
 		98CDCFB0199DD14300418FC4 /* BLChecklistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98CDCFAF199DD14300418FC4 /* BLChecklistViewController.m */; };
+		98CDCFBC19A145ED00418FC4 /* BLURLConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 98CDCFBB19A145ED00418FC4 /* BLURLConnectionManager.m */; };
 		98F5118F1991563C00C2E2E2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98F5118E1991563C00C2E2E2 /* Foundation.framework */; };
 		98F511911991563C00C2E2E2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98F511901991563C00C2E2E2 /* CoreGraphics.framework */; };
 		98F511931991563C00C2E2E2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98F511921991563C00C2E2E2 /* UIKit.framework */; };
@@ -79,6 +80,8 @@
 		98CDCFAC199DCD0A00418FC4 /* BLChecklistTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BLChecklistTableViewCell.xib; sourceTree = "<group>"; };
 		98CDCFAE199DD14300418FC4 /* BLChecklistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLChecklistViewController.h; sourceTree = "<group>"; };
 		98CDCFAF199DD14300418FC4 /* BLChecklistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLChecklistViewController.m; sourceTree = "<group>"; };
+		98CDCFBA19A145ED00418FC4 /* BLURLConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLURLConnectionManager.h; sourceTree = "<group>"; };
+		98CDCFBB19A145ED00418FC4 /* BLURLConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLURLConnectionManager.m; sourceTree = "<group>"; };
 		98F5118B1991563C00C2E2E2 /* Flightplan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flightplan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98F5118E1991563C00C2E2E2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		98F511901991563C00C2E2E2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -207,6 +210,8 @@
 				980C324719995A1D0076AB05 /* BLUtils.m */,
 				980C325119998E5E0076AB05 /* BLXMLReader.h */,
 				980C325219998E5E0076AB05 /* BLXMLReader.m */,
+				98CDCFBA19A145ED00418FC4 /* BLURLConnectionManager.h */,
+				98CDCFBB19A145ED00418FC4 /* BLURLConnectionManager.m */,
 				98CDCFA8199DCC6900418FC4 /* Checklist */,
 				980C3250199973800076AB05 /* Airport Weather */,
 				985AD72D1992D5AA00EF47D7 /* View Controllers */,
@@ -415,6 +420,7 @@
 				98F511C91991588500C2E2E2 /* BLCenterViewController.m in Sources */,
 				98F5119F1991563C00C2E2E2 /* BLAppDelegate.m in Sources */,
 				98F5119B1991563C00C2E2E2 /* main.m in Sources */,
+				98CDCFBC19A145ED00418FC4 /* BLURLConnectionManager.m in Sources */,
 				98F511CC199158CC00C2E2E2 /* BLDrawerViewController.m in Sources */,
 				980C325B199B45DD0076AB05 /* BLTableViewCell.m in Sources */,
 				98CDCFB0199DD14300418FC4 /* BLChecklistViewController.m in Sources */,

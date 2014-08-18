@@ -13,6 +13,7 @@
 //@property (strong, nonatomic) IBOutlet UIImage *status;
 @property (strong, nonatomic) IBOutlet UILabel *metar;
 @property (strong, nonatomic) IBOutlet UILabel *taf;
+@property (strong, nonatomic) IBOutlet UILabel *skyCondition;
 @property (strong, nonatomic) NSString *airportIdentifier;
 @property (strong, nonatomic) id dataSource;
 + (CGFloat) height;
